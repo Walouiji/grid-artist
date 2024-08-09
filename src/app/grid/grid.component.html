@@ -1,0 +1,5 @@
+<table>
+    <tr *ngFor="let row of grid; let i = index">
+        <td *ngFor="let cell of row; let j = index" [style.background-color]="gridColor[cell]" (click)="cellClicked(i, j)"><a></a></td>
+    </tr>
+</table>
