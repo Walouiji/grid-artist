@@ -1,1 +1,11 @@
-<grid></grid>
+<grid [selectedColor]="this.selectedColor"></grid>
+
+<table>
+    <tr>
+        <td *ngFor="let color of gridColor; let i = index">
+            <button (click)="selectedColor = i">
+                {{ color }}
+            </button>
+        </td>
+    </tr>
+</table>

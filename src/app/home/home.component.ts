@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -15,9 +15,13 @@ export class HomeComponent {
     colNumber: number = 5;
     rowNumber: number = 5;
 
-    availableColors = [
-        { color: 'white', value: 0 },
-        { color: 'black', value: 1 }
-    ];
+    gridColor = [
+        'white',
+        'black',
+        'red',
+        'green',
+        'blue',
+        'yellow',
+      ]
     selectedColor: number = 1;
 }
