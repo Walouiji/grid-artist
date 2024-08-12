@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'grid',
@@ -8,7 +9,7 @@ import { NgFor } from '@angular/common';
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.scss'
 })
-export class GridComponent {
+export class GridComponent implements OnInit {
 
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
@@ -36,6 +37,17 @@ export class GridComponent {
     'blue',
     'yellow',
   ]
+
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.rows = parseInt(params['x']);
+      this.cols = parseInt(params['y']);
+      this.grid = new Array(this.rows).fill(0).map(() => new Array(this.cols).fill(0));
+    });
+  }
 
   cellClicked(row: number, col: number) {
     this.grid[row][col] = this.selectedColor;
